@@ -1,0 +1,11 @@
+{
+    "config": {
+        "document-actions": [{
+            "key": "delete-product",
+            "title": "Delete Product",
+            "iconClass": "fa fa-book",
+            "action": "delete-product"
+        }]
+    }
+}
+

@@ -1,0 +1,14 @@
+{
+    "title": "Registration",
+    "type": "object",
+    "properties": {
+        "country": {
+            "type": "string",
+            "title": "Country"
+        },
+        "countries": {
+            "type": "array",
+            "title": "Countries"
+        }
+    }
+}

@@ -1,0 +1,66 @@
+.header .navbar-top-bar .navbar-nav > li.disabled > a
+{
+    color: gray;
+}
+
+.header .navbar-default .navbar-nav > li.disabled > a
+{
+    color: gray;
+}
+
+.footer .main-footer .footer-widgets .list-link > li.disabled > a
+{
+    color: gray
+}
+
+.navbar-brand img.logo
+{
+    max-width:50px;
+    display: inline-block;
+}
+
+.navbar-brand span.title
+{
+    display: inline-block;
+    font-size: 32px;
+    vertical-align: middle;
+}
+
+.featured-book .book-cover img, .category-books .book-cover img, .home-owl-carousel .book-cover img
+{
+    width: 100%;
+}
+
+.book-cover .book-inner img
+{
+  max-width: 100%;
+  height: 300px;
+}
+
+.books .book
+{
+  padding: 20px;
+}
+
+.author-dp
+{
+    height: 200px;
+}
+
+.author-dp img
+{
+    /*max-width: 150px;*/
+    /*height: 200px;*/
+  max-width: 100%;
+  height: 200px;
+}
+
+h3.author-name
+{
+    min-height: 60px;
+}
+
+.item
+{
+  padding: 20px;
+}

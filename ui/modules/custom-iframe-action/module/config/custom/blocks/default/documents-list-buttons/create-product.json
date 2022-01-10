@@ -1,0 +1,17 @@
+{
+    "config": {
+        "documents-list-buttons": [{
+            "key": "new",
+            "buttons": [{
+                "key": "create-product",
+                "title": "Create Product",
+                "iconClass": "fa fa-plus",
+                "align": "left",
+                "action": "create-product",
+                "allowPermission": [
+                    "create_subobjects"
+                ]
+            }]
+        }]
+    }
+}

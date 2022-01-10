@@ -1,0 +1,21 @@
+<div class="content">
+    <div class="home page">
+
+        <div class="slider">
+            <div id="hero">
+                <div id="owl-main" class="owl-carousel1 owl-theme">
+                    <app-herobook *ngIf="books[0]" [book]="books[0]"></app-herobook>
+                </div>
+
+            </div>
+        </div>
+
+        <app-bookcarousel></app-bookcarousel>
+
+        <!-- featured authors -->
+        <div class="featured-item-block">
+            <app-authorlist></app-authorlist>
+        </div>
+
+    </div>
+</div>

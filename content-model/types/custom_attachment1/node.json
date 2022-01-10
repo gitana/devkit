@@ -1,0 +1,18 @@
+{
+	"title": "Attachment",
+	"type": "object",
+	"properties": {
+		"file": {
+			"type": "object",
+			"title": "File",
+			"_attachment": {
+				"id": "default"
+			}
+		}
+	},
+	"_parent": "n:node",
+	"description": "demo _attachment property",
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"_qname": "custom:attachment1",
+	"_type": "d:type"
+}

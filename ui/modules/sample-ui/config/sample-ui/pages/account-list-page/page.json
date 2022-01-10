@@ -1,0 +1,7 @@
+{
+    "title": "Accounts",
+    "uri": "/projects/{projectId}/branches/{branchId}/sample-ui-account-list",
+    "extends": "project/_project",
+    "xtemplate": "account-list-template",
+    "template": "default"
+}

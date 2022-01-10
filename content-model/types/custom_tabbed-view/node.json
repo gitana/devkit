@@ -1,0 +1,26 @@
+{
+	"title": "tabbed-view",
+	"type": "object",
+	"properties": {
+		"title": {
+			"type": "string"
+		},
+		"text1": {
+			"type": "string"
+		},
+		"text2": {
+			"type": "string"
+		},
+		"text3": {
+			"type": "string"
+		},
+		"text4": {
+			"type": "string"
+		}
+	},
+	"_parent": "n:node",
+    "_qname": "custom:tabbed-view",
+	"description": "custom:tabbed-view",
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"_type": "d:type"
+}

@@ -1,0 +1,38 @@
+{
+  "name": "gatsby-cloudcms-example",
+  "private": true,
+  "description": "An example static Gatsby site using Cloud CMS as a data source",
+  "version": "0.1.1",
+  "author": "Michael Whitman <michael.whitman@cloudcms.com>",
+  "contributors": [
+    "Harry Moore <harry.moore@cloudcms.com>"
+  ],
+  "dependencies": {
+    "gatsby": "^3.14.6",
+    "gatsby-plugin-manifest": "^2.12.1",
+    "gatsby-plugin-react-helmet": "^5.4.0",
+    "gatsby-source-cloudcms": "^1.1.3",
+    "gatsby-source-filesystem": "^4.4.0",
+    "gatsby-source-graphql": "^2.14.0",
+    "react": "^16.14.0",
+    "react-disqus-comments": "^1.4.0",
+    "react-dom": "^16.14.0",
+    "react-helmet": "^5.2.1",
+    "react-share": "^4.4.0",
+    "react-twitter-widgets": "^1.10.0"
+  },
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "Apache 2.0",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "start": "npm run develop",
+    "format": "prettier --write \"src/**/*.js\"",
+    "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""
+  },
+  "devDependencies": {
+    "prettier": "^1.19.1"
+  }
+}

@@ -1,0 +1,23 @@
+{
+	"title": "page",
+	"type": "object",
+	"properties": {
+		"title": {
+			"type": "string",
+			"title": "Title"
+		},
+		"one-link": {
+			"$ref": "qname://custom/reference1",
+			"type": "object"
+		},
+		"another-link": {
+			"$ref": "qname://custom/reference1",
+			"type": "object"
+		}
+	},
+	"_parent": "n:node",
+	"description": "custom:page",
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"_qname": "custom:reference3",
+	"_type": "d:type"
+}

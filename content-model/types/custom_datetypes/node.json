@@ -1,0 +1,22 @@
+{
+	"title": "date-types",
+	"type": "object",
+	"properties": {
+		"date1": {
+			"type": "string"
+		},
+		"date2": {
+			"type": "string",
+			"format": "date"
+		},
+		"date3": {
+			"type": "string",
+			"format": "date-time"
+		}
+	},
+	"_parent": "n:node",
+	"description": "custom:datetypes",
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"_qname": "custom:datetypes",
+	"_type": "d:type"
+}

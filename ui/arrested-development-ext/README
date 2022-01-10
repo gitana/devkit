@@ -1,0 +1,52 @@
+# Arrested Development UI for Cloud CMS
+
+This extensions package is intended for the on-premise Docker installation of Cloud CMS.
+
+It demonstrates how to extend the user interface at a deeper level to provide some additional whitelabel and custom
+capabilities.
+
+## Installation
+
+To install this:
+
+1.  In your Docker "ui" service configuration, mount this folder into the Docker container like this:
+
+Example:
+```
+  ui:
+    build: ./ui
+    networks:
+      - cloudcms
+    depends_on:
+      - api
+    env_file:
+      - ./ui/ui.env
+    ports:
+      - "80:80"
+    volumes:
+      - /{path_to_this_folder}:/var/app/current/ext
+```
+
+Where "path_to_this_folder" should be replaced with the path to the current directory.
+
+2.  Edit the `ui.env` file and add the following:
+
+    CLOUDCMS_UI_EXT_PATH=./ext
+    CLOUDCMS_UI_EXT_REPLACE=true
+
+This tells the user interface to pick up the extensions from the `./ext` path.
+This path resolves to `/var/app/current/ext`.
+
+This also tells Cloud CMS to completely replace the application config with the contents from `./ext`.
+
+## Testing
+
+Once you've done that, restart your Docker process.  You may also want to rebuild your Docker images to be sure
+you're picking up all the latest changes.
+
+    docker-compose down
+    docker-compose build --force-rm
+    docker-compose up
+
+Then load up the UI and you'll see a completely different theme.  The logos have been changed, the branding is different.
+Even the quotes and waiting icons have been adjusted.

@@ -1,0 +1,13 @@
+{
+	"title": "inherit1",
+	"engineId": "alpaca1",
+	"fields": {
+		"prop1": {
+			"type": "text",
+			"title": "prop1",
+			"required": true
+		}
+	},
+	"_type": "n:form",
+	"description": ""
+}

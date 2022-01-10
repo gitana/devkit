@@ -1,0 +1,51 @@
+{
+	"title": "object-array",
+	"type": "object",
+	"properties": {
+		"title": {
+			"type": "string"
+		},
+		"cta": {
+			"type": "array",
+			"title": "CTA",
+			"items": {
+				"type": "object",
+				"title": "cta",
+				"properties": {
+					"text": {
+						"title": "CTA Text",
+						"type": "string"
+					},
+					"url": {
+						"type": "string",
+						"title": "url"
+					},
+					"image": {
+						"type": "object",
+						"title": "Image",
+						"_relator": {
+							"nodeType": "n:node",
+							"mappings": [
+								{
+									"from": "target",
+									"fromProperty": "/altText",
+									"toProperty": "./altText"
+								},
+								{
+									"from": "target",
+									"fromProperty": "/description",
+									"toProperty": "./description"
+								}
+							]
+						}
+					}
+				}
+			}
+		}
+	},
+	"_parent": "n:node",
+	"description": "custom:objectarray",
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"_qname": "custom:objectarray",
+	"_type": "d:type"
+}

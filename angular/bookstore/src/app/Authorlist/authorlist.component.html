@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="wow fadeInUp">
+        <div class="module block-featured-author module-block">
+            <div class="module-heading">
+                <h2 class="module-title">Featured Authors</h2>
+            </div>
+            <div class="module-body" id="featured-author">
+                <div class="row">
+                    <div class="authors">
+                        <div class="col-md-3" *ngFor="let author of authors">
+                            <div class="item item-author-block author" style="text-align: center">
+                                <a routerLink="/search">
+                                    <div class="author-dp">
+                                        <img alt="" src={{author.imageUrl}}>
+                                    </div>
+                                </a>
+                                <div class="author-details">
+                                    <h3 class="author-name">
+                                        <a routerLink="/search">
+                                            {{author.title}}
+                                        </a>
+                                    </h3>
+                                    <!--<blockquote class="author-testimonial">{{author.testimonial}}</blockquote>-->
+                                    <a routerLink="/search" class="btn btn-primary btn-view-books">
+                                        View books
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

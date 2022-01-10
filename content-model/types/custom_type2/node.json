@@ -1,0 +1,92 @@
+{
+	"title": "type2",
+	"type": "object",
+	"properties": {
+		"prop1": {
+			"type": "array",
+			"items": {
+				"type": "string"
+			}
+		},
+		"articleAvailability": {
+			"type": "object",
+			"properties": {
+				"availableOnHomepage": {
+					"type": "boolean",
+					"title": "Manage this content's availability on the website home page"
+				},
+				"displayOrder": {
+					"type": "integer",
+					"title": "Display Order",
+					"default": 1,
+					"minimum": 0
+				}
+			}
+		},
+		"articleType": {
+			"type": "string",
+			"enum": [
+				"homepage",
+				"blog",
+				"fund"
+			]
+		},
+		"articleImage": {
+			"type": "object",
+			"label": "Image",
+			"_relator": {}
+		},
+		"messages": {
+			"type": "array",
+			"title": "Flags",
+			"items": {
+				"type": "object",
+				"title": "Flag",
+				"properties": {
+					"text": {
+						"title": "Text",
+						"type": "string"
+					},
+					"color": {
+						"title": "Color",
+						"type": "string",
+						"enum": [
+							"notification",
+							"warning",
+							"danger"
+						],
+						"default": "notification"
+					}
+				},
+				"required": [
+					"text",
+					"color"
+				]
+			}
+		},
+		"fundDisclosureDocuments": {
+			"title": "List of Documents",
+			"type": "array",
+			"items": {
+				"type": "object"
+			},
+			"_relator": {
+				"associationType": "a:linked",
+				"nodeType": "n:node"
+			}
+		}
+	},
+	"dependencies": {
+		"articleImage": [
+			"articleType"
+		]
+	},
+	"_parent": "n:node",
+	"description": "custom:type2",
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"required": [
+		"articleImage"
+	],
+	"_qname": "custom:type2",
+	"_type": "d:type"
+}

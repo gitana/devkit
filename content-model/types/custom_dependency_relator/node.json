@@ -1,0 +1,50 @@
+{
+	"title": "dependency on a relator",
+	"description": "Demonstrate property dependencies",
+	"_parent": "n:node",
+	"_qname": "custom:dependency_relator",
+	"_type": "d:type",
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"type": "object",
+	"properties": {
+		"title": {
+			"type": "string"
+		},
+		"otherNode": {
+			"type": "object",
+			"title": "otherNode",
+			"_relator": {},
+			"properties": {
+				"typeQName": {
+					"type": "string"
+				}
+			}
+		},
+		"optional1": {
+			"type": "string",
+			"title": "optional1"
+		},
+		"select2": {
+			"type": "string",
+			"title": "select2",
+			"default": "x",
+			"enum": [
+				"x",
+				"y",
+				"z"
+			]
+		},
+		"optional2": {
+			"type": "string",
+			"title": "optional2"
+		}
+	},
+	"dependencies": {
+		"optional1": [
+			"otherNode.typeQName"
+		],
+		"optional2": [
+			"select2"
+		]
+	}
+}

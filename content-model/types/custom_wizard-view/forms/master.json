@@ -1,0 +1,50 @@
+{
+	"fields": {
+		"title": {
+			"label": "Title"
+		},
+		"text1": {
+			"label": "text 1",
+			"type": "text"
+		},
+		"text2": {
+			"label": "text 2",
+			"type": "text"
+		},
+		"text3": {
+			"label": "text 3",
+			"type": "text"
+		},
+		"text4": {
+			"label": "Text 4",
+			"type": "text"
+		}
+	},
+	"title": "Default Form",
+	"engineId": "alpaca1",
+	"view": {
+		"parent": "bootstrap-edit-horizontal",
+		"wizard": {
+			"title": "Welcome to the Wizard",
+			"description": "Please fill things in as you wish",
+			"bindings": {
+				"title": 1,
+				"text1": 1,
+				"text2": 1,
+				"text3": 2,
+				"text4": 2
+			},
+			"steps": [
+				{
+					"title": "Page 1",
+					"description": "Basic Information"
+				},
+				{
+					"title": "page 2",
+					"description": "Advanced"
+				}
+			]
+		}
+	},
+	"_type": "n:form"
+}

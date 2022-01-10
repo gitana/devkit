@@ -1,0 +1,13 @@
+{
+  "name": "custom-iframe-action",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "private": true,
+  "dependencies": {
+    "express": "^4.16.2",
+    "express-handlebars": "^3.1.0",
+    "gitana": "^1.0.309",
+    "handlebars-helpers": "^0.10.0"
+  }
+}

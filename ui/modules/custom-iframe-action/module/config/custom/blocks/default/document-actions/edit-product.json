@@ -1,0 +1,11 @@
+{
+   
+    "config": {
+        "document-actions": [{
+            "key": "edit-product",
+            "title": "Edit Product",
+            "iconClass": "fa fa-book",
+            "action": "edit-product"
+        }]
+    }
+}

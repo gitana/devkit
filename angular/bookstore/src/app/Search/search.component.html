@@ -1,0 +1,108 @@
+<div class="category page">
+    <div class="container">
+        <div class="page-header category-page-header">
+            <h2 class="page-title">Search</h2>
+            <p class="page-subtitle">Find the books you're looking for</p>
+        </div>
+
+        <div class="page-body">
+            <div class="row">
+                <!-- ========================================= CONTENT ========================================= -->
+                <div class="col-sm-8 col-sm-push-4">
+                    <div class="category-toolbar">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-4">
+                                <ul id="myTab" class="nav nav-tabs grid-list-view-buttons" role="tablist">
+                                    <li role="presentation" class="active"><a href="#grid" class="btn navbar-btn" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-th active"></span></a></li>
+                                    <li role="presentation"><a href="#list" class="btn navbar-btn" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-th-list"></span></a></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="tab-content">
+                        <div class="tab-pane active wow fadeInUp" id="grid" role="tabpanel">
+                            <div class="category-books books grid-view">
+                                <div class="row">
+
+                                    <div class="col-md-4 col-sm-6" *ngFor="let book of results">
+                                        <app-book [book]="book" [width]="258" [height]="351"></app-book>                                        
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane wow fadeInUp featured-book-holder" id="list" role="tabpanel">
+
+                            <div class="featured-book" *ngFor="let book of results">
+                                <div class="books clearfix">
+                                    <div class="row">
+                                        <div class="col-md-4 col-sm-5">
+                                            <div class="book">
+                                                <div class="hot-ribbon"><div class="hot-ribbon-content">hot</div></div>
+                                                <div class="book-cover">
+                                                    <img class="img-responsive" alt="" width="193" height="261" src={{book.imageUrl}}>
+                                                    <div class="fade"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-8 col-sm-7">
+                                            <div class="book-details book-details-list-view">
+                                                <h3>
+                                                    <a routerLink="/book/{{book._doc}}" class="book-title">{{book.title}}</a>
+                                                </h3>
+                                                <p class="book-author">{{book.authorTitle}}</p>
+                                            </div>
+
+                                            <div class="featured-book-content">
+                                                <p class="hidden-sm hidden-md">{{book.description}}</p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <ul class="pagination book-pagination">
+                        <li class="active"><a>1</a></li>
+                        <li><a>2</a></li>
+                        <li><a>3</a></li>
+                        <li><a>4</a></li>
+                        <li><a>5</a></li>
+                    </ul>
+                </div>
+
+                <!-- ========================================= CONTENT :END ========================================= -->
+
+
+                <!-- sidebar -->
+                <div class="col-sm-4 col-sm-pull-8">
+                    <aside class="sidebar">
+                        <section class="module">
+                            <header class="module-header">
+                                <h4 class="module-book-category-title">Book Category</h4>
+                            </header>
+
+                            <div class="module-body category-module-body">
+                                <ul class="list-unstyled category-list">
+
+                                    <li *ngFor="let tag of tags">
+                                        <a routerLink="/search" [queryParams]="{tag: tag.tag}">{{tag.title}}</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </section>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

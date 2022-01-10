@@ -1,0 +1,35 @@
+{
+    "evaluator": "and",
+    "condition": [{
+        "evaluator": "project-has-module",
+        "condition": "sample-ui"
+    }, {
+        "evaluator": "context-project"
+    }],
+    "config": {
+        "project-context": {
+            "items": [{
+                "key": "sample",
+                "title": "Sample",
+                "group": true,
+                "cssClass": "group-sample",
+                "iconClass": "fas fa-building",
+                "items": [{
+                    "key": "sample/heading",
+                    "title": "Sample",
+                    "header": true,
+                    "order": 1000,
+                    "items": [{
+                        "key": "sample-ui/account-list",
+                        "title": "Accounts",
+                        "uri": "#/projects/{projectId}/branches/{branchId}/sample-ui-account-list",
+                        "iconClass": "fa fa-pencil",
+                        "allowPermission": [
+                            "read"
+                        ]
+                    }]
+                }]
+            }]
+        }
+    }
+}

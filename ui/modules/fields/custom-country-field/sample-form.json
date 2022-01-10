@@ -1,0 +1,11 @@
+{
+    "fields": {
+        "country": {
+            "type": "custom-country"
+        },
+        "countries": {
+            "type": "custom-country",
+            "multiple": true
+        }
+    }
+}

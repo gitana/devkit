@@ -1,0 +1,10 @@
+extends layout
+
+block content
+    h1!= "Tear down Content Items"
+    p We deleted #{nodes.length} content items.
+    p The following content items were deleted:
+    ul
+      each node in nodes
+        li= node.title
+

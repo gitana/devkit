@@ -1,0 +1,13 @@
+{
+  "name": "helloworld-express",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node ./app.js"
+  },
+  "dependencies": {
+    "express": "~4.9.0",
+    "jade": "~1.6.0",
+    "gitana": "*"
+  }
+}

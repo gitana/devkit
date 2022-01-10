@@ -1,0 +1,37 @@
+{
+	"view": {
+		"parent": "bootstrap-edit",
+		"layout": {
+			"template": "<div>\n\n    <div class=\"row\">\n        <div class=\"col-md-6\" id=\"left\">\n\n        </div>\n        <div class=\"col-md-6\" id=\"right\">\n\n        </div>\n    </div>\n\n</div>        \n",
+			"bindings": {
+				"text1": "#left",
+				"text3": "#right"
+			}
+		}
+	},
+	"fields": {
+		"title": {
+			"label": "Title"
+		},
+		"text1": {
+			"label": "text 1",
+			"type": "text"
+		},
+		"text2": {
+			"label": "text 2",
+			"type": "text"
+		},
+		"text3": {
+			"label": "text 3",
+			"type": "text"
+		},
+		"text4": {
+			"label": "Text 4",
+			"type": "text"
+		}
+	},
+	"title": "Default Form",
+	"engineId": "alpaca1",
+	"_form_key": "default",
+	"_type": "n:form"
+}

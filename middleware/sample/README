@@ -1,0 +1,10 @@
+# cloudcms-server sample
+
+This is a sample of using https://github.com/gitana/cloudcms-server
+
+See documentation: https://www.cloudcms.com/documentation/appserver.html
+
+1. Add your `gitana.json` file. You can get it by: Creating a sample project > Manage Project > API Keys
+2. Run `npm install`
+3. Run `npm start` to start the app server.
+4. Navigate to localhost:2999

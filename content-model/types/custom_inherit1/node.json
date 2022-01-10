@@ -1,0 +1,12 @@
+{
+	"title": "inherit1",
+	"description": "",
+	"type": "object",
+	"_parent": "n:node",
+	"properties": {},
+	"mandatoryFeatures": {
+		"custom:inherit1-feature": {}
+	},
+	"_qname": "custom:inherit1",
+	"_type": "d:type"
+}

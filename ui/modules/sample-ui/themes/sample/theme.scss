@@ -1,0 +1,66 @@
+$sample_white: #FFFFFF;
+$sample_5_black: #F2F2F2;
+$sample_40_black: #999999;
+$sample_80_black: #333333;
+$sample_black: #000000;
+$sample_green: #00563F;
+$sample_dark_green: #003D2D;
+$sample_bright_green: #A6E483;
+$sample_medium_green: #3BB982;
+$sample_bright_blue: #27AFE7;
+$sample_dark_blue: #10398C;
+$sample_purple: #472361;
+$sample_yellow: #FFDE00;
+
+
+////////////////////////////////////////////////////////////////////////
+
+
+// Platform Header Background
+$color1: $sample_80_black;
+
+// Project Header Background
+$color2: $sample_black;
+
+// Side Menu Background
+$color3: $sample_dark_green;
+
+// Body Background
+$color4: $sample_5_black;
+
+// Body Text
+$color5: $sample_80_black;
+
+// Dashlet and Section Header
+$color6: #CCCCCC;
+
+// Left Panel Background
+$color7: $sample_40_black;
+
+// Primary Button
+$button1_color: $sample_green;
+
+// Secondary Button
+$button2_color: $sample_medium_green;
+
+// Commit / Save Button
+$button3_color: $sample_dark_green;
+
+// Cancel Button
+$button4_color: #bc3545;
+
+// Filter Button
+$button6_color: $sample_medium_green;
+
+// Workspace Bar Button
+$button7_color: $sample_bright_blue;
+
+// List Button
+$button8_color: $sample_bright_blue;
+
+// other settings
+$autoTextLightnessThreshold: 90;
+$textColorLight: $sample_5_black;
+$textColorDark: $sample_80_black;
+$form-control-background-color: $sample_white;
+$themeLogoUrl: "./sample-logo.png";

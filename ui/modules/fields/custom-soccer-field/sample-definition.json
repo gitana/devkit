@@ -1,0 +1,14 @@
+{
+    "title": "Registration",
+    "type": "object",
+    "properties": {
+        "game": {
+            "type": "string",
+            "title": "Game"
+        },
+        "games": {
+            "type": "array",
+            "title": "Games"
+        }
+    }
+}

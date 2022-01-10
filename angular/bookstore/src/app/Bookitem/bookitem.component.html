@@ -1,0 +1,14 @@
+<div class="book" style="text-align: center">
+    <div class="book-cover">
+        <div class="book-inner">
+            <img alt="" src={{book.imageUrl}} width="255" height="261">
+            <div class="fade"></div>
+        </div>
+    </div>
+    <div class="book-details">
+        <h3 class="book-title">
+            <a routerLink="/book/{{book._doc}}">{{book.title}}</a>
+        </h3>
+        <p class="book-author">{{book.authorTitle}}</p>
+    </div>
+</div>

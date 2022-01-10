@@ -1,0 +1,91 @@
+{
+	"_type": "n:form",
+	"title": "master",
+	"fields": {
+		"title": {
+			"type": "text",
+			"label": "",
+			"required": true,
+			"default": ""
+		},
+		"pageType": {
+			"type": "select",
+			"label": "Page Type",
+			"required": true,
+			"default": "",
+			"optionLabels": [
+				"Fixed Page Type",
+				"Flexible Number of Sections"
+			],
+			"hideNone": true
+		},
+		"heading": {
+			"type": "text",
+			"label": "Heading",
+			"required": true,
+			"default": ""
+		},
+		"body": {
+			"type": "ckeditor",
+			"label": "Body",
+			"required": true,
+			"default": "",
+			"dependencies": {
+				"pageType": "fixed"
+			}
+		},
+		"sections": {
+			"type": "array",
+			"label": "Sections",
+			"required": false,
+			"items": {
+				"type": "object",
+				"label": "sections",
+				"fields": {
+					"sectionType": {
+						"type": "radio",
+						"label": "Section Type",
+						"required": true,
+						"default": "",
+						"optionLabels": [
+							"text",
+							"image"
+						],
+						"hideNone": true
+					},
+					"headline": {
+						"type": "text",
+						"label": "Headline",
+						"required": true,
+						"default": ""
+					},
+					"text": {
+						"type": "text",
+						"label": "Text",
+						"required": true,
+						"default": "",
+						"dependencies": {
+							"sectionType": "text"
+						}
+					},
+					"image": {
+						"type": "related-content",
+						"label": "Image",
+						"required": false,
+						"uploadPath": "/images",
+						"maxNumberOfFiles": 1,
+						"fileTypes": "(\\.|/)(gif|jpe?g|png|svg)$",
+						"default": "",
+						"dependencies": {
+							"sectionType": "text"
+						}
+					}
+				}
+			},
+			"dependencies": {
+				"pageType": "flexible"
+			}
+		}
+	},
+	"engineId": "alpaca1"
+}

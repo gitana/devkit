@@ -1,0 +1,10 @@
+{
+  "name": "appserver-example-auth",
+  "description": "Cloud CMS Application Server - Authentication Examples",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "cloudcms-server": "*",
+    "jsonwebtoken": "^8.5.1"
+  }
+}

@@ -1,0 +1,86 @@
+{
+	"title": "dependency",
+	"type": "object",
+	"properties": {
+		"title": {
+			"type": "string"
+		},
+		"pageType": {
+			"title": "Page Type",
+			"type": "string",
+			"enum": [
+				"fixed",
+				"flexible"
+			],
+			"default": "fixed"
+		},
+		"heading": {
+			"type": "string",
+			"title": "heading",
+			"default": ""
+		},
+		"body": {
+			"type": "string",
+			"title": "body",
+			"default": ""
+		},
+		"sections": {
+			"type": "array",
+			"title": "sections",
+			"items": {
+				"type": "object",
+				"title": "sections",
+				"properties": {
+					"sectionType": {
+						"type": "string",
+						"title": "sectionType",
+						"default": "text",
+						"enum":[
+							"text",
+							"image"
+						]
+					},
+					"headline": {
+						"title": "headline",
+						"type": "string"
+					},
+					"text": {
+						"title": "text",
+						"type": "string"
+					},
+					"image": {
+						"type": "object",
+						"title": "image",
+						"required": false,
+						"_relator": {
+							"associationType": "a:linked",
+							"nodeType": "n:node"
+						}
+					}
+				}
+			}
+		}
+	},
+	"description": "Demonstrate property dependencies",
+	"_parent": "n:node",
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"dependencies": {
+		"heading": [
+			"pageType"
+		],
+		"body": [
+			"pageType"
+		],
+		"sections": [
+			"pageType"
+		],
+		"sections.text": [
+			"sections.sectionType"
+		],
+		"sections.image": [
+			"sections.sectionType"
+		]
+	},
+	"_qname": "custom:dependency",
+	"_type": "d:type"
+}

@@ -1,0 +1,9 @@
+{
+    "key": "sample",
+    "title": "Sample Theme",
+    "description": "Theme for Sample",
+    "template": "default",
+    "editorTheme": {
+        "ace": "ace/theme/github"
+    }
+}

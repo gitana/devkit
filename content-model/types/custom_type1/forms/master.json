@@ -1,0 +1,32 @@
+{
+	"title": "Default Form",
+	"engineId": "alpaca1",
+	"fields": {
+		"title": {
+			"type": "text",
+			"label": "Name",
+			"order": 1
+		},
+		"date": {
+			"type": "date",
+			"title": "Post Date",
+			"helper": "The date that will display with the content",
+			"order": 2,
+			"validate": true,
+			"showMessages": true
+		},
+		"content": {
+			"type": "markdown",
+			"markdown": {
+				"toolbar": [
+					"preview",
+					"|",
+					"bold",
+					"italic"
+				]
+			}
+		}
+	},
+	"_form_key": "default",
+	"_type": "n:form"
+}

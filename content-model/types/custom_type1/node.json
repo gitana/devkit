@@ -1,0 +1,23 @@
+{
+	"title": "type1",
+	"type": "object",
+	"properties": {
+		"title": {
+			"type": "string",
+			"title": "Title"
+		},
+		"date": {
+			"type": "string",
+			"title": "Date",
+			"format": "date"
+		},
+		"content": {
+			"type": "string"
+		}
+	},
+	"_parent": "n:node",
+	"description": "custom:type1",
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"_qname": "custom:type1",
+	"_type": "d:type"
+}

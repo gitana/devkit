@@ -1,0 +1,14 @@
+{
+  "name": "content-model",
+  "version": "1.0.0",
+  "description": "package content model",
+  "main": "package.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cloudcms-packager": "^1.0.5"
+  }
+}

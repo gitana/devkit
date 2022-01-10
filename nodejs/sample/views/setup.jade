@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    h1!= "Create Content Items"
+    p We created #{nodes.length} content items.
+    p The following content items were created:
+    ul
+      each node in nodes
+        li= node.title
+
+
+

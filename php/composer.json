@@ -1,0 +1,10 @@
+{
+  "name": "cloudcms-sdk/sample-connect",
+  "description": "Sample Cloud CMS PHP Project",
+  "license": "Apache 2.0",
+  "type": "project",
+  "require": {
+      "php": ">=5.5.9",
+      "league/oauth2-client": "^1.3"
+  }
+}

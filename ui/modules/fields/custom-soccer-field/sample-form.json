@@ -1,0 +1,11 @@
+{
+    "fields": {
+        "game": {
+            "type": "custom-soccer"
+        },
+        "games": {
+            "type": "custom-soccer",
+            "multiple": true
+        }
+    }
+}

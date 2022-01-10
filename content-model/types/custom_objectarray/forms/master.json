@@ -1,0 +1,40 @@
+{
+	"fields": {
+		"title": {
+			"label": "Title"
+		},
+		"cta": {
+			"type": "array",
+			"label": "CTAs",
+			"items": {
+				"type": "object",
+				"label": "CTA",
+				"fields": {
+					"text": {
+						"type": "textarea",
+						"label": "Text"
+					},
+					"url": {
+						"type": "text",
+						"title": "URL"
+					},
+					"image": {
+						"type": "file-picker",
+						"label": "Image or Video",
+						"picker": {
+							"initialContainerPath": "/images",
+							"rootContainerPath": "/images",
+							"uploadPath": "/images",
+							"uploadType": "n:node",
+							"typeQName": "n:node"
+						}
+					}
+				}
+			}
+		}
+	},
+	"title": "Default Form",
+	"engineId": "alpaca1",
+	"_qname": "o:75aad41b8d6e03bb1415default",
+	"_type": "n:form"
+}

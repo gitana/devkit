@@ -1,0 +1,9 @@
+{
+    "key": "wondertwins",
+    "title": "Wonder Twins Theme",
+    "description": "A sample theme for Cloud CMS that implements the Wonder Twins color scheme",
+    "template": "default",
+    "editorTheme": {
+        "ace": "ace/theme/github"
+    }
+}

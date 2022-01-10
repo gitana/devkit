@@ -1,0 +1,98 @@
+<script>
+    function trigger(event) {
+        window.top.postMessage(event, "*");
+    };
+
+    window.onmessage = function (event) {
+        var e = event.data;
+        if (e.type == "info")
+        {
+            console.log(JSON.stringify(e));
+        }
+    };
+
+    $(document).ready(function() {
+
+        $("form").submit(function(e) {
+            e.preventDefault();
+
+            trigger({
+                "type": "save",
+                "data": $(this).serializeArray()
+            });
+        });
+
+        $(".btn-cancel").off().click(function(e) {
+            e.preventDefault();
+            trigger({
+                "type": "cancel"
+            });
+        });
+
+        // request document info right away
+        trigger({
+            "type": "info"
+        });
+    });
+
+</script>
+
+<div class="form">
+    <form action="/none">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" name="title" id="title" placeholder="Product Title">
+        </div>
+        <div class="form-group">
+            <label for="sku">SKU</label>
+            <input type="number" class="form-control" name="sku" placeholder="Product SKU">
+        </div>
+
+        <div class="radio">
+          <label>
+            <input type="radio" name="size" value="small">
+            Small
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="size" value="medium" checked>
+            Medium
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="size" value="large">
+            Large
+          </label>
+        </div>
+
+        <input type="hidden" name="authorName" value="<%=authorName%>">
+
+        <br/>
+        <br/>
+
+        <div class="pull-left">
+            <button class="btn btn-danger btn-cancel">Cancel</button>
+        </div>
+        <div class="pull-right">
+            <button class="btn btn-primary" type="submit">Create</button>
+        </div>
+
+        <div class="clear:both"></div>
+    </form>
+
+    <!-- other optional actions -->
+    <!--
+    <button class="btn btn-default" onclick="trigger('cancel')">Cancel</button>
+    <button class="btn btn-default" onclick="trigger('done')">Done</button>
+    <button class="btn btn-default" onclick="trigger('reload')">Reload</button>
+    <button class="btn btn-default" onclick="trigger('redirect', {'url': ''https://github.com'})">Redirect</button>
+    <button class="btn btn-default" onclick="trigger('requestInfo')">Request Info</button>
+    -->
+
+</div>
+
+
+
+

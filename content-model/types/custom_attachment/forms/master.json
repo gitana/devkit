@@ -1,0 +1,11 @@
+{
+	"title": "Default Form",
+	"engineId": "alpaca1",
+	"fields": {
+		"file": {
+			"label": "File Attachment",
+			"type": "attachment-picker"
+		}
+	},
+	"_type": "n:form"
+}

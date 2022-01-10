@@ -1,0 +1,14 @@
+{
+	"title": "Default Form",
+	"engineId": "alpaca1",
+	"fields": {
+		"file": {
+			"label": "array of attachments",
+			"type": "attachment-picker",
+			"items": {
+				"type": "text"
+			}
+		}
+	},
+	"_type": "n:form"
+}

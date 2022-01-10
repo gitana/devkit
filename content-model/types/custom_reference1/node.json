@@ -1,0 +1,36 @@
+{
+	"title": "shared",
+	"type": "object",
+	"properties": {
+		"title": {
+			"type": "string",
+			"title": "Title"
+		},
+		"preview": {
+			"$ref": "qname://custom/reference1#/definitions/link-target"
+		},
+		"fromType1": {
+			"$ref": "qname://custom/type1"
+		},
+		"fromFeature": {
+			"$ref": "qname://custom/reference1a"
+		}
+	},
+	"_parent": "n:node",
+	"description": "custom:shared",
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"definitions": {
+		"link-target": {
+			"type": "string",
+			"title": "link-target",
+			"enum": [
+				"BLANK",
+				"SELF",
+				"PARENT",
+				"TOP"
+			]
+		}
+	},
+	"_qname": "custom:reference1",
+	"_type": "d:type"
+}

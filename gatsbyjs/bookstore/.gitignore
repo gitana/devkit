@@ -1,0 +1,4 @@
+public/
+.cache/
+yarn.lock
+gitana.json

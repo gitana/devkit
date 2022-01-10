@@ -1,0 +1,541 @@
+{
+	"info": {
+		"_postman_id": "700e3017-8b19-420d-bd85-db71d0524749",
+		"name": "Cloud CMS API",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "api",
+			"item": [
+				{
+					"name": "application",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/applications/{{application}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"applications",
+								"{{application}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read projectId from application",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/stacks/find/application/{{application}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"stacks",
+								"find",
+								"application",
+								"{{application}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read repositoryId from project stack",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/stacks/{{application}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"stacks",
+								"{{application}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"if (pm.response.json().platformId) {",
+							"    pm.variables.set(\"platformId\", pm.response.json().platformId);",
+							"}",
+							"",
+							"console.log(\"platformId: \" + (pm.variables.get(\"platformId\") || \"NOT SET\"));",
+							"console.log(\"projectId: \" + (pm.variables.get(\"projectId\") || \"NOT SET\"));",
+							"console.log(\"repositoryId: \" + (pm.variables.get(\"repositoryId\") || \"NOT SET\"));",
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "graphql",
+			"item": [
+				{
+					"name": "graph QL",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "5b3ff9f7e322b9d1900cda5ab55d3e8b",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "X-AUTH-TOKEN",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-AUTH-TOKEN",
+								"value": "",
+								"description": "Personal Auth token generated for user in Headless CMS application"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"query\": \"query{_mediaList{id,extension}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/graphql",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						},
+						"description": "Endpoint for GraphQL Queries for Headless Types"
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"query\": \"query{_mediaList{id,extension}}\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/graphql",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"graphql"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"data\": {\n  \"_mediaList\": [\n   {\n    \"extension\": \"png\"\n   },\n   {\n    \"extension\": \"png\"\n   },\n   {\n    \"extension\": \"png\"\n   }\n  ]\n }\n}"
+						},
+						{
+							"name": "Unauthorized",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"query\": \"query{_mediaList{id,extension}}\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/graphql",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"graphql"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"code\": 401,\n \"massage\": \"Unauthorized\"\n}"
+						}
+					]
+				},
+				{
+					"name": "graph QL Schema",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "5b3ff9f7e322b9d1900cda5ab55d3e8b",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "X-AUTH-TOKEN",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-AUTH-TOKEN",
+								"value": "",
+								"description": "Personal Auth token generated for user in Headless CMS application"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/graphql/schema",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"graphql",
+								"schema"
+							]
+						},
+						"description": "Get current descripion of GraphQL Schema"
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/graphql/schema",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"graphql",
+										"schema"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/html"
+								}
+							],
+							"cookie": [],
+							"body": "type Query {\n_media(id: String!): _media\n  _mediaList(page: Int, limit: Int, order_by: String, order_direction: String): [_media]\n}\n\n\"\"\"Auto generated Headless CMS type: _media\"\"\"\ntype _media {\n  id: String\n  url: String\n  size: Float\n  type: String\n  width: Float\n  height: Float\n  source: String\n  fileName: String\n  mimeType: String\n  extension: String\n  externalId: String\n}"
+						},
+						{
+							"name": "Unauthorized",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/graphql/schema",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"graphql",
+										"schema"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"code\": 401,\n \"massage\": \"Unauthorized\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "content",
+			"item": [
+				{
+					"name": "Create Node",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "Read Node",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "Update Node",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Node",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				}
+			],
+			"description": "Content requests will create, read, update, delete a document in Cloud CMS"
+		},
+		{
+			"name": "query",
+			"item": [
+				{
+					"name": "query",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/{{repositoryId}}/{{branchId}}/query",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"{{repositoryId}}",
+								"{{branchId}}",
+								"query"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "search",
+			"item": [
+				{
+					"name": "search",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "password",
+				"value": "{{password}}",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "{{username}}",
+				"type": "string"
+			},
+			{
+				"key": "accessTokenUrl",
+				"value": "{{baseURL}}/oauth/token",
+				"type": "string"
+			},
+			{
+				"key": "grant_type",
+				"value": "password_credentials",
+				"type": "string"
+			},
+			{
+				"key": "scope",
+				"value": "api",
+				"type": "string"
+			},
+			{
+				"key": "authUrl",
+				"value": "{{baseURL}}/oauth/token",
+				"type": "string"
+			},
+			{
+				"key": "clientSecret",
+				"value": "{{clientSecret}}",
+				"type": "string"
+			},
+			{
+				"key": "clientId",
+				"value": "{{clientKey}}",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "https://api.cloudcms.com"
+		},
+		{
+			"key": "clientKey",
+			"value": ""
+		},
+		{
+			"key": "clientSecret",
+			"value": ""
+		},
+		{
+			"key": "username",
+			"value": ""
+		},
+		{
+			"key": "password",
+			"value": ""
+		},
+		{
+			"key": "application",
+			"value": ""
+		},
+		{
+			"key": "platformId",
+			"value": ""
+		},
+		{
+			"key": "repositoryId",
+			"value": ""
+		},
+		{
+			"key": "branchId",
+			"value": ""
+		},
+		{
+			"key": "nodeId",
+			"value": ""
+		}
+	]
+}

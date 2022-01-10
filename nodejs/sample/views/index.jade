@@ -1,0 +1,9 @@
+extends layout
+
+block content
+    h1!= "View Content Items"
+    p We found #{nodes.length} content items.
+    each node in nodes
+      div
+        h2= node.title
+        p= node.body

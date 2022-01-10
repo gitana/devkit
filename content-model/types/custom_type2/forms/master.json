@@ -1,0 +1,78 @@
+{
+	"title": "Default Form",
+	"engineId": "alpaca1",
+	"fields": {
+		"prop1": {
+			"label": "array of strings",
+			"type": "array",
+			"items": {
+				"type": "text"
+			}
+		},
+		"articleAvailability": {
+			"type": "object",
+			"fields": {
+				"availableOnHomepage": {
+					"type": "select",
+					"label": "",
+					"rightLabel": "Available on Home Page?"
+				},
+				"displayOrder": {
+					"type": "number",
+					"minimum": 0,
+					"default": 1,
+					"title": "Display Order"
+				}
+			}
+		},
+		"articleType": {
+			"type": "select",
+			"optionLabels": [
+				"Home Page",
+				"Blog Post Article",
+				"Fund Detail Page"
+			]
+		},
+		"articleImage": {
+			"type": "related-content",
+			"label": "Image",
+			"required": true,
+			"uploadPath": "/images",
+			"maxNumberOfFiles": 1
+		},
+		"messages": {
+			"type": "array",
+			"label": "Messages",
+			"toolbarSticky": true,
+			"items": {
+				"type": "object",
+				"label": "Message",
+				"fields": {
+					"text": {
+						"type": "textarea",
+						"label": "Text",
+						"required": true
+					},
+					"color": {
+						"type": "radio",
+						"default": "notification",
+						"rightLabel": "Color",
+						"label": "",
+						"optionLabels": [
+							"Notification",
+							"Warning",
+							"Danger"
+						]
+					}
+				}
+			}
+		},
+		"fundDisclosureDocuments": {
+			"type": "related-content",
+			"label": "Documents",
+			"uploadPath": "/documents/funds",
+			"fileTypes": "(\\.|/)(pdf|docx?)$"
+		}
+	},
+	"_type": "n:form"
+}

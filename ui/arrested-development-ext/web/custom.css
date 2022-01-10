@@ -1,0 +1,18 @@
+div.logo-header
+{
+    background: url(/ext/banana-stand.png) no-repeat center !important;
+    height: 150px !important;
+    background-size: 250px !important;
+}
+
+/** change the color of the splash spinner **/
+#splash-spinner .sk-circle .sk-child:before
+{
+    background-color: orange !important;
+}
+
+/** change the color over the page load spinner **/
+.sk-three-bounce.page-transition .sk-child
+{
+    background-color: orange !important;
+}

@@ -1,0 +1,27 @@
+{
+	"title": "Default Form",
+	"engineId": "alpaca1",
+	"fields": {
+		"title": {
+			"type": "text",
+			"label": "Title"
+		},
+		"date1": {
+			"type": "date",
+			"label": "Date1",
+			"dateFormat": "YYYY-MM-DD"
+		},
+		"date2": {
+			"type": "date",
+			"label": "Date1",
+			"dateFormat": "YYYY-MM-DD"
+		},
+		"date3": {
+			"type": "date",
+			"label": "Date1",
+			"dateFormat": "YYYY-MM-DD"
+		}
+	},
+	"_form_key": "default",
+	"_type": "n:form"
+}

@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Cloud CMS server sample - Node Details</title>
+    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+  </head>
+  <body class="container">
+    <h2><a href="index.html">Home</a></h2>
+    <h2>Cloud CMS server sample - Node Details</h>
+    <ul id="content" class="list-unstyled"></ul>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+      axios.get('/content/' + window.location.search.substr(1).split('=')[1])
+        .then(function (response) {
+          document.getElementById('content').innerHTML = response.data.map(function (node) {
+            return (
+              '<li class="row">' +
+                '<div class="col-md-3">' +
+                  '<strong>' + node.title + '</strong>' +
+                  '<div>Document Details: <a href="details.html?_doc=' + node._doc + '" target="_blank">' + node._doc + '</a></div>' +
+                '</div>' +
+              '</li><br/>'
+            );
+          }).join('');
+        })
+        .catch(function (err) {
+          document.getElementById('content').innerHTML = '<li class="text-danger">' + err.message + '</li>';
+        });
+    </script>
+  </body>
+</html>

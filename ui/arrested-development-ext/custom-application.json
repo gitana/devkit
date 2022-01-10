@@ -1,0 +1,78 @@
+{
+    "app": {
+        "title": "Bluth CMS"
+    },
+    "splash": {
+        "message": "Loading the Bluth Banana Stand",
+        "logo": {
+            "id": "logo",
+            "enabled": true,
+            "config": {
+                "url": "/ext/banana-stand.png"
+            }
+        },
+        "spinner": {
+            "id": "spinner-circle",
+            "enabled": true,
+            "config": {
+            }
+        },
+        "quotes": [{
+            "quote": "I’ve made a huge mistake.",
+            "author": "Gob"
+        }, {
+            "quote": "I’m afraid I just blue myself.",
+            "author": "Tobias"
+        }, {
+            "quote": "There’s always money in the banana stand!",
+            "author": "George Sr."
+        }, {
+            "quote": "Has anyone in this family ever even seen a chicken?",
+            "author": "Michael"
+        }, {
+            "quote": "No touching!",
+            "author": "Prison Guard"
+        }, {
+            "quote": "Whoa, whoa, whoa, whoa, there’s still plenty of meat on that bone. Now you take this home, throw it in a pot, add some broth, a potato. Baby you got a stew going!",
+            "author": "Carl Weathers"
+        }, {
+            "quote": "And that’s why you always leave a note.",
+            "author": "J. Walter Weatherman"
+        }, {
+            "quote": "You’re gonna get some hop-ons...",
+            "author": "Michael"
+        }, {
+            "quote": "Marry me!",
+            "author": "Maeby"
+        }, {
+            "quote": "I don't understand the question and I won't answer it.",
+            "author": "Lucille"
+        }, {
+            "quote": "I don’t criticize you! And if you’re worried about criticism, sometimes a diet is the best defense.",
+            "author": "Lucille"
+        }]
+    },
+    "services": [{
+        "id": "favicon",
+        "enabled": true,
+        "config": {
+            "url": "/ext/custom-favicon.png"
+        }
+    }, {
+        "id": "css",
+        "enabled": true,
+        "config": {
+            "urls": [
+                "/ext/custom.css"
+            ]
+        }
+    }, {
+        "id": "audio",
+        "enabled": true,
+        "config": {
+            "url": [
+                "/ext/arrested-development.mp3"
+            ]
+        }
+    }]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "sample",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "svelte-kit dev",
+    "build": "svelte-kit build",
+    "preview": "svelte-kit preview"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.16.0",
+    "@sveltejs/adapter-static": "^1.0.0-next.21",
+    "@sveltejs/kit": "next",
+    "svelte": "^3.34.0"
+  },
+  "type": "module",
+  "dependencies": {
+    "@fontsource/fira-mono": "^4.5.0",
+    "@lukeed/uuid": "^2.0.0",
+    "cloudcms": "^0.2.3",
+    "cookie": "^0.4.1",
+    "svelte-preprocess": "^4.9.8"
+  }
+}

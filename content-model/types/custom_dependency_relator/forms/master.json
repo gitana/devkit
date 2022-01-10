@@ -1,0 +1,57 @@
+{
+	"_type": "n:form",
+	"engineId": "alpaca1",
+	"title": "master",
+	"fields": {
+		"title": {
+			"type": "text",
+			"label": "",
+			"required": true,
+			"default": ""
+		},
+		"otherNode": {
+			"type": "node-picker",
+			"label": "otherNode",
+			"fields": {
+				"typeQName": {
+					"type": "hidden"
+				}
+			},
+			"picker": {
+				"typeQNames": [
+					"n:person",
+					"n:form"
+				]
+			}
+		},
+		"optional1": {
+			"type": "text",
+			"label": "optional1",
+			"dependencies": {
+				"otherNode.typeQName": "n:form"
+			}
+		},
+		"select2": {
+			"type": "select",
+			"label": "select2",
+			"default": "x",
+			"sort": false,
+			"hideNone": true,
+			"optionLabels": [
+				"X",
+				"Y",
+				"Z"
+			]
+		},
+		"optional2": {
+			"type": "text",
+			"label": "optional2",
+			"dependencies": {
+				"select2": "y"
+			}
+		},
+		"dependencies": {
+			"pageType": "flexible"
+		}
+	}
+}
