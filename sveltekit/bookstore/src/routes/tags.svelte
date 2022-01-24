@@ -2,7 +2,7 @@
 	export const prerender = true;
 
 	export const load = async ({ fetch }) => {
-		const res = await fetch('/api/tags?limit=-1', { method: 'POST'}).then(res => res.json());
+		const res = await fetch('/api/tags?limit=-1', { method: 'POST', body: '{}'}).then(res => res.json());
 		return {
 			props: {
 				tags: res.tags

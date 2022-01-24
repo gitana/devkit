@@ -1,6 +1,6 @@
 <script context="module">
-	export const load = async ({ page, fetch }) => {
-        const slug = page.params.slug;
+	export const load = async ({ params, fetch }) => {
+        const slug = params.slug;
 		const book = await fetch(`/api/book/${slug}`).then(res => res.json());
 
 		return {

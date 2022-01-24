@@ -2,7 +2,7 @@
 	export const prerender = true;
 
 	export const load = async ({ fetch }) => {
-		const res = await fetch('/api/authors?limit=-1', { method: 'POST', body: null}).then(res => res.json());
+		const res = await fetch('/api/authors?limit=-1', { method: 'POST', body: '{}'}).then(res => res.json());
 
 		return {
 			props: {

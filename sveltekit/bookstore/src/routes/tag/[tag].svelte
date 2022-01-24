@@ -1,15 +1,15 @@
 <script context="module">
 
-	export const load = async ({ page, fetch }) => {
-        const tagStr = page.params.tag;
+	export const load = async ({ params, fetch }) => {
+        const tagStr = params.tag;
         const tagQuery = JSON.stringify({ 'tag': tagStr });
         const res = await fetch(`/api/tags?limit=1`, { method: 'POST', body: tagQuery, headers: { 'content-type': 'application/json' } })
-                            .then(res => res.json());
+                            .then(r => r.json());
 
 		const tag = res.tags[0];
         const booksQuery = JSON.stringify({ 'tags': tagStr });
         const results = (await fetch(`/api/books?limit=-1`, { method: 'POST',  body: booksQuery, headers: { 'content-type': 'application/json' } })
-                                    .then(res => res.json())).books
+                                    .then(r => r.json())).books
 
 		return {
 			props: {

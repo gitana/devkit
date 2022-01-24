@@ -3,8 +3,8 @@
 
 	export const load = async ({ fetch }) => {
 		
-		const books = (await fetch('/api/books?limit=4', { method: 'POST' }).then(res => res.json())).books;
-		const authors = (await fetch('/api/authors?limit=4', { method: 'POST'}).then(res => res.json())).authors;
+		const books = (await fetch('/api/books?limit=4', { method: 'POST', body: '{}' }).then(res => res.json())).books;
+		const authors = (await fetch('/api/authors?limit=4', { method: 'POST', body: '{}' }).then(res => res.json())).authors;
 
 		return {
 			props: {
