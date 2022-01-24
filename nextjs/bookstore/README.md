@@ -15,11 +15,11 @@ own Next JS applications.
 
 ## Prerequisites
 
-1. Run `npm install` within your `nextjs/sample` directory.
+1. Run `npm install` within your `nextjs/bookstore` directory.
 
 ## Configuration
 
-Go into your `nextjs/sample` directory and do the following.
+Go into your `nextjs/bookstore` directory and do the following.
 
 1. Add your `gitana.json` file. For information on how to retrieve this see: https://www.cloudcms.com/apikeys.html
 
