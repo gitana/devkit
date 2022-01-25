@@ -10,6 +10,9 @@ see how it appears on different places within the web site.
 This example is not intended for production use, but rather to demonstrate how Cloud CMS might integrate with your
 own SvelteKit applications.
 
+
+Note: This example uses the Sveltekit `next` version, which is unstable and subject to breaking changes. Please let us know if you encounter any of these and we will update as well.
+
 ## Prerequisites
 
 1. Run `npm install` within your `sveltekit/bookstore` directory.
