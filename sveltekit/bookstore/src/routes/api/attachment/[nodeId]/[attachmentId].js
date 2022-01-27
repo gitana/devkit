@@ -1,11 +1,11 @@
 import { connect } from '$lib/api/cloudcms';
 
 // GET /api/attachment/[nodeId]/[attachmentId]
-export const get = async (request) => {
-    let { nodeId, attachmentId } = request.params;
+export const get = async (event) => {
+    let { nodeId, attachmentId } = event.params;
 
 	const session = await connect(fetch);
-	const branch = await session.getCurrentBranch(request);
+	const branch = await session.getCurrentBranch(event);
 
 	// Remove extension if present
 	if (attachmentId.indexOf('.') >= 0) {

@@ -1,7 +1,7 @@
 <script context="module">
 
-	export const load = async ({ page, fetch }) => {
-        const slug = page.params.slug;
+	export const load = async ({ params, fetch }) => {
+        const slug = params.slug;
         const query = JSON.stringify({ 'slug': slug });
         const res = await fetch(`/api/authors?limit=1`, { method: 'POST', body: query, headers: { 'content-type': 'application/json' } })
                             .then(res => res.json());

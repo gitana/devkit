@@ -20,7 +20,7 @@ class SvelteSession extends UtilitySession {
     }
 
 
-    async getCurrentBranch(request)
+    async getCurrentBranch(context)
     {
         let repositoryId = null;
         let branchId = null;
@@ -29,13 +29,13 @@ class SvelteSession extends UtilitySession {
 
         if (previewMode)
         {
-            if (request.locals.repository)
+            if (context.locals.repository)
             {
-                repositoryId = request.locals.repository;
+                repositoryId = context.locals.repository;
             }
-            if (request.locals.branch)
+            if (context.locals.branch)
             {
-                branchId = request.locals.branch;
+                branchId = context.locals.branch;
             }
         }
 
