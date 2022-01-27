@@ -226,7 +226,7 @@ body {
   font-family: "RobotoBlack";
 }
 img[src="assets/images/blank.gif"] {
-  background: url("../images/ajax.gif") no-repeat scroll center center #FFFFFF;
+  background: url("/images/ajax.gif") no-repeat scroll center center #FFFFFF;
   width: 100%;
 }
 .block-new-books,
@@ -791,7 +791,7 @@ a:active {
   padding: 0px 22px;
 }
 .brand-carousel .item {
-  background-image: url("../images/brandhover.png");
+  background-image: url("/images/brandhover.png");
   cursor: pointer;
 }
 .brand-carousel .item h4 {
@@ -1083,7 +1083,7 @@ a:active {
 }
 .owl-item.loading {
   min-height: 150px;
-  background: url(../images/ajax.gif) no-repeat center center;
+  background: url(/images/ajax.gif) no-repeat center center;
 }
 /*===================================================================================*/
 /*  FEATURED BLOCK LESS
@@ -1314,7 +1314,7 @@ a:active {
   height: 600px;
 }
 .book-shelf {
-  background: url("../images/shelf.png") no-repeat scroll center bottom rgba(0, 0, 0, 0);
+  background: url("/images/shelf.png") no-repeat scroll center bottom rgba(0, 0, 0, 0);
   padding-bottom: 28px;
   text-align: center;
   display: block;

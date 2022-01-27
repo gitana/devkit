@@ -35,7 +35,7 @@
                         </button>
 
                         <router-link tag="a" class="navbar-brand" to="/">
-                            <img class="logo" src="../images/book-flat.png">
+                            <img class="logo" src="/images/book-flat.png">
                             <span class="title">Quick Start Books</span>
                         </router-link>
                     </div>
