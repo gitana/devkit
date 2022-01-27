@@ -85,7 +85,8 @@ async function init() {
         let query = {
             _type: "n:tag",
             _fields: {
-                tag: 1
+                tag: 1,
+                title: 1
             }
         };
 
@@ -95,7 +96,8 @@ async function init() {
             }, limit: 100
         });
 
-        return res.status(200).json(result.rows);
+        let tags = _.indexBy(result.rows, '_doc');
+        return res.status(200).json(tags);
     });
 
     app.get("/static/*", async (req, res) => {
