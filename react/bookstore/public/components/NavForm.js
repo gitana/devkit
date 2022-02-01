@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom';
 
 class NavForm extends React.Component {
     constructor(props) {
@@ -20,7 +21,9 @@ class NavForm extends React.Component {
 
     submitHandler(event) {
         event.preventDefault()
-        this.props.history.push(`/search?text=${this.state.searchText}`, this.state)
+        if (this.state.searchText) {
+            this.props.navigate(`/search?text=${this.state.searchText}`)
+        }
     }
 
     render() {
@@ -35,4 +38,15 @@ class NavForm extends React.Component {
     }
 }
 
-export default NavForm
+const withRouter = WrappedComponent => props => {
+    const navigate = useNavigate();
+
+    return (
+        <WrappedComponent
+            {...props}
+            navigate={navigate}
+        />
+    );
+};
+
+export default withRouter(NavForm);

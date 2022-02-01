@@ -78,7 +78,7 @@ async function init() {
         };
 
         let result = await cloudcmsSession.findNodes(repository, branch, query, { metadata: true, full: true, limit: 100 });
-        return res.status(200).json(updateProperties(result));
+        return res.status(200).json(updateProperties(result).rows);
     });
 
     app.get("/api/tags", async (req, res) => {
@@ -124,7 +124,7 @@ function updateProperties(result) {
                 });
             }
         });
-    } else {
+    } else if (result._doc) {
         result.author && (result.authorTitle = result.author.title);
         result.imageUrl = `/static/${result._doc}/default.${result._system.attachments.default.ext}`
         if (result.recommendations) {
