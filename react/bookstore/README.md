@@ -6,7 +6,7 @@ To run, in the react/sample directory:
 
 1. Add your `gitana.json` file. You can get it by: Creating a sample project > Manage Project > API Keys
 2. Run `npm install`
-3. Run `npm run build` to build the react app.
+3. Run `npm run build` to build the react app. (`npm run build-dev` for a development build)
 4. Run `npm start` to start the app server.
 5. Navigate to localhost:2999
 

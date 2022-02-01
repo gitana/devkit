@@ -19,7 +19,7 @@ class BooksContainer extends React.Component {
                                 <div className="row">
                                     {
                                         firstFourBooks.map((book) => (
-                                            <div className="col-md-3" key={book._doc}>
+                                            <div className="col-md-3" key={book._doc || book.id}>
                                                 <Book book={book} />
                                             </div>
                                         ))

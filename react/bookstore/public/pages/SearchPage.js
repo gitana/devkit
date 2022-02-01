@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Book from "../components/Book";
+import { useLocation, useParams } from "react-router";
 
 class SearchPage extends React.Component {
 
@@ -167,7 +168,7 @@ class SearchPage extends React.Component {
                                                                 <div className="col-md-8 col-sm-7">
                                                                     <div className="book-details book-details-list-view">
                                                                         <h3 className="book-title">
-                                                                            <Link to={`/book/${book._doc}`}>
+                                                                            <Link to={`/book/${book._doc}`} key={book._doc}>
                                                                                 {book.title}
                                                                             </Link>
                                                                         </h3>
@@ -229,4 +230,17 @@ class SearchPage extends React.Component {
     }
 }
 
-export default SearchPage
+const withRouter = WrappedComponent => props => {
+    const location = useLocation();
+    const params = useParams();
+
+    return (
+        <WrappedComponent
+            {...props}
+            location={location}
+            params={params}
+        />
+    );
+};
+
+export default withRouter(SearchPage);

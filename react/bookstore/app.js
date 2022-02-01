@@ -1,163 +1,170 @@
-var server = require("cloudcms-server/server");
+const express = require('express');
+const app = express();
+const path = require('path');
+const _ = require('underscore');
+const cloudcms = require("cloudcms");
+const fs = require('fs');
+const os = require('os');
 
-var routes = function (app, callback)
-{
-    app.get("/api/books", function(req, res) {
+process.env.CLOUDCMS_BRANCH = process.env.CLOUDCMS_BRANCH || 'master';
+const tmpDir = path.join(os.tmpdir(), "cloudcms-bookstore-cache");
+
+init().then(() => {
+    // start web server
+    app.set('port', process.env.PORT || 3000);
+
+    var server = app.listen(app.get('port'), function () {
+        console.log("");
+        console.log("-------------------------------");
+        console.log("React Bookstore sample running...");
+        console.log("");
+        console.log("   To view sample content, go to http://localhost:" + server.address().port + "/");
+        console.log("");
+    });
+});
+
+async function init() {
+    const cloudcmsSession = await cloudcms.connect();
+    cloudcmsSession.defaults.qs.metadata = true;
+    const application = await cloudcmsSession.readApplication(cloudcmsSession.config.application);
+    const project = await cloudcmsSession.readProject(application.projectId);
+    const stack = await cloudcmsSession.readStack(project.stackId);
+    const dataStores = await cloudcmsSession.listDataStores(stack);
+    const dataStoresById = _.indexBy(dataStores.rows, '_doc');
+    const repository = dataStoresById.content;
+    repository._doc = repository.datastoreId;
+    const branchList = await cloudcmsSession.listBranches(repository);
+    const branchesById = _.indexBy(branchList.rows, '_doc');
+    const branchesByTitle = _.indexBy(branchList.rows, 'title');
+    const branch = process.env.CLOUDCMS_BRANCH === 'master' ? branchesByTitle['master'] : branchesById[process.env.CLOUDCMS_BRANCH];
+
+    console.log(`-------------------------------\nConnected to Cloud CMS project "${project.title}" branch "${branch.title}"}`);
+
+    app.use(express.static(path.join(__dirname, 'public')));
+
+    app.get("/api/books", async (req, res) => {
         let query = {
             _type: "store:book"
         };
-        if (req.query.tag)
-        {
+
+        if (req.query.tag) {
             query.tags = req.query.tag;
         }
 
-        req.branch(function(err, branch) {
-            branch.trap(function(err) {
-                return res.status(500).json(err);
-            }).queryNodes(query).each(function() {
-                this.imageUrl = "/static/" + this._doc + "-image.jpg?repository=" + this.getRepositoryId() + "&branch=" + this.getBranchId() + "&node=" + this.getId();
-                this.authorTitle = this.author.title;
-            }).then(function() {
-                return res.status(200).json(this);
-            });
-        });
+        let result = await cloudcmsSession.queryNodes(repository, branch, query, { metadata: true, full: true, limit: 100 });
+        return res.status(200).json(updateProperties(result).rows);
     });
 
-    app.get("/api/books/:id", function(req, res) {
-        const bookId = req.params.id;
-
-        req.branch(function(err, branch) {
-            branch.trap(function(err) {
-                return res.json(err);
-            }).readNode(bookId)
-            .then(function() {
-                this.imageUrl = "/static/" + this._doc + "-image.jpg?repository=" + this.getRepositoryId() + "&branch=" + this.getBranchId() + "&node=" + this.getId();
-                this.pdfUrl = "/static/" + this._doc + "-pdf.jpg?repository=" + this.getRepositoryId() + "&branch=" + this.getBranchId() + "&node=" + this.getId() + "&attachment=book_pdf";
-                this.authorTitle = this.author.title;  
-                
-                const self = this;
-                this.recommendations.forEach(function(rec) {
-                    rec._doc = rec.id;
-                    rec.imageUrl = "/static/" + rec._doc + "-image.jpg?repository=" + self.getRepositoryId() + "&branch=" + self.getBranchId() + "&node=" + rec._doc;
-                });           
-                return res.status(200).json(this);
-            });
-        });
+    app.get("/api/books/:id", async (req, res) => {
+        let result = await cloudcmsSession.readNode(repository, branch, req.params.id);
+        return res.status(200).json(updateProperties(result));
     });
 
-    app.get("/api/authors", function(req, res) {
-        req.branch(function(err, branch) {
-            branch.trap(function(err) {
-                return res.status(500).json(err);
-            }).queryNodes({
-                _type: "store:author"
-            }).each(function() {
-                this.imageUrl = "/static/" + this._doc + "-image.jpg?repository=" + this.getRepositoryId() + "&branch=" + this.getBranchId() + "&node=" + this.getId();
-            }).then(function() {
-                return res.status(200).json(this);
-            });
-        });
+    app.get("/api/authors", async (req, res) => {
+        let query = {
+            _type: "store:author"
+        };
+
+        let result = await cloudcmsSession.queryNodes(repository, branch, query, { metadata: true, full: true, paths: true, limit: 100 });
+        return res.status(200).json(updateProperties(result).rows);
     });
 
-    app.get("/api/search", function(req, res) {
-        const text = req.query.text;
-
-        req.branch(function(err, branch) {
-            branch.trap(function(err) {
-                return res.status(500).json(err);
-            }).findNodes({
-                search: text,
-                query: {
-                    _type: "store:book"
-                }
-            }).each(function() {
-                this.imageUrl = "/static/" + this._doc + "-image.jpg?repository=" + this.getRepositoryId() + "&branch=" + this.getBranchId() + "&node=" + this.getId();
-            }).then(function() {
-                return res.status(200).json(this);
-            });
-        });
-    });
-
-    app.get("/api/tags", function(req, res) {
-        req.branch(function(err, branch) {
-            branch.trap(function(err) {
-                return res.status(500).json(err);
-            }).queryNodes({
-                _type: "n:tag"
-            }, {
-                sort: {
-                    tag: 1
-                }
-            }).then(function() {
-                return res.status(200).json(this);
-            });
-        });
-    });
-
-    callback();
-};
-
-server.routes(routes);
-
-server.report(function(callback) {
-
-    var cpuCount = require('os').cpus().length;
-
-    // provide some debug info
-    console.log("");
-    console.log("Sample App Started Up");
-    console.log("");
-    console.log("Node Version: " + process.version);
-    console.log("Server Version: " + process.env.CLOUDCMS_APPSERVER_PACKAGE_VERSION);
-    console.log("Server Mode: " + process.env.CLOUDCMS_APPSERVER_MODE);
-    console.log("Server Base Path: " + process.env.CLOUDCMS_APPSERVER_BASE_PATH);
-    console.log("Gitana Scheme: " + process.env.GITANA_PROXY_SCHEME);
-    console.log("Gitana Host: " + process.env.GITANA_PROXY_HOST);
-    console.log("Gitana Port: " + process.env.GITANA_PROXY_PORT);
-    console.log("Temp Directory: " + process.env.CLOUDCMS_TEMPDIR_PATH);
-    console.log("CPU Count: " + cpuCount);
-    console.log("Store Configuration: " + process.env.CLOUDCMS_STORE_CONFIGURATION);
-    console.log("Broadcast Provider: " + process.env.CLOUDCMS_BROADCAST_TYPE);
-    console.log("Cache Provider: " + process.env.CLOUDCMS_CACHE_TYPE);
-    console.log("LaunchPad Mode: " + process.env.CLOUDCMS_LAUNCHPAD_SETUP);
-    console.log("Server mode: " + (process.env.NODE_ENV ? process.env.NODE_ENV : "development"));
-    console.log("");
-    console.log("Web Server: http://localhost:" + process.env.PORT);
-    console.log("");
-
-    callback();
-});
-
-server.start({
-    "setup": "single",
-    "welcome": {
-        "enabled": true,
-        "file": "index.html"
-    },
-    "wcm": {
-        "enabled": true,
-        "cache": false
-    },
-    "cache": {
-        "enabled": true
-    },
-    "autoRefresh": {
-        "log": true
-    },
-    "perf": {
-        "enabled": true,
-        "paths": [{
-            "regex": "/static/.*",
-            "cache": {
-                "seconds": 300
+    app.get("/api/search", async (req, res) => {
+        let query = {
+            search: req.query.text,
+            query: {
+                _type: "store:book"
             }
-        }]
+        };
+
+        let result = await cloudcmsSession.findNodes(repository, branch, query, { metadata: true, full: true, limit: 100 });
+        return res.status(200).json(updateProperties(result));
+    });
+
+    app.get("/api/tags", async (req, res) => {
+        let query = {
+            _type: "n:tag",
+            _fields: {
+                tag: 1,
+                title: 1
+            }
+        };
+
+        let result = await cloudcmsSession.queryNodes(repository, branch, query, {
+            sort: {
+                tag: 1
+            }, limit: 100
+        });
+
+        let tags = _.indexBy(result.rows, '_doc');
+        return res.status(200).json(tags);
+    });
+
+    app.get("/static/*", async (req, res) => {
+        return await handleStatic(req, res, cloudcmsSession, cloudcmsSession.acquireId(repository), cloudcmsSession.acquireId(branch));
+    });
+
+
+    app.get('*', function (req, res) {
+        // res.redirect("index.html")
+        res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    });
+}
+
+function updateProperties(result) {
+    if (result.rows !== undefined && result.rows.length) {
+        result.rows.map((row) => {
+            row.author && (row.authorTitle = row.author.title);
+            row.imageUrl = `/static/${row._doc}/default.${row._system.attachments.default.ext}`
+            if (row.recommendations) {
+                row.recommendations.map((book) => {
+                    book._doc = book.id;
+                    book.authorTitle = "";
+                    book.imageUrl = `/static/${book._doc || book.id}/default.jpg`;
+                });
+            }
+        });
+    } else {
+        result.author && (result.authorTitle = result.author.title);
+        result.imageUrl = `/static/${result._doc}/default.${result._system.attachments.default.ext}`
     }
-});
 
+    return result;
+}
 
+async function handleStatic(req, res, cloudcmsSession, repositoryId, branchId) {
+    //  get node info from request
+    let parts = req.path.split('/');
+    let nodeId = parts[2];
+    let attachmentId = path.parse(parts[3]).name;
+    let ext = path.parse(parts[3]).ext.slice(1);
 
+    if (process.env.NODE_ENV !== 'production') {
+        // don't use cache unless in production mode
+        let attachment = await cloudcmsSession.downloadAttachment(repositoryId, branchId, nodeId, attachmentId);
+        return attachment.pipe(res);
+    }
 
+    let cacheFolderPath = path.join(tmpDir, repositoryId, branchId, nodeId);
+    let cacheFilePath = path.join(tmpDir, repositoryId, branchId, nodeId, `${attachmentId}.${ext}`);
 
+    if (fs.existsSync(cacheFilePath)) {
+        // read from cache
+        return res.sendFile(cacheFilePath);
+    }
 
+    // write to cache
+    let attachment = await cloudcmsSession.downloadAttachment(repositoryId, branchId, nodeId, attachmentId);
+    if (!fs.existsSync(cacheFolderPath)) {
+        fs.mkdirSync(cacheFolderPath, { recursive: true });
+    }
 
+    // read from cache
+    let ws = fs.createWriteStream(cacheFilePath);
+    attachment.pipe(ws);
+    ws.on('close', function () {
+        return res.sendFile(cacheFilePath);
+    });
+}
+
+// export const ViteDevServer = app;

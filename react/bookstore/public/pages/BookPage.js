@@ -2,17 +2,19 @@ import React from "react";
 import axios from "axios";
 import BooksContainer from "../components/BooksContainer";
 import BookTags from "../components/BookTags";
+import { useLocation, useParams } from "react-router";
 
 class BookPage extends React.Component {
+    constructor(props) {
+        super(props);
 
-    constuctor() {
         this.state = {
             book: null
         };
     }
 
     fetchAndUpdateBook() {
-        const bookId = this.props.match.params.id;
+        let bookId = this.props.params.id;
 
         axios.get(`/api/books/${bookId}`)
             .then((res) => {
@@ -27,7 +29,7 @@ class BookPage extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (this.props.match.params.id !== prevProps.match.params.id) {
+        if (this.props.params.id !== prevProps.params.id) {
             this.fetchAndUpdateBook();
         }
     }
@@ -118,4 +120,17 @@ class BookPage extends React.Component {
     }
 }
 
-export default BookPage
+const withRouter = WrappedComponent => props => {
+    const location = useLocation();
+    const params = useParams();
+
+    return (
+        <WrappedComponent
+            {...props}
+            location={location}
+            params={params}
+        />
+    );
+};
+
+export default withRouter(BookPage);

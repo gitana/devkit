@@ -1,5 +1,4 @@
 import React from "react";
-import { withRouter } from "react-router";
 
 class NavForm extends React.Component {
     constructor(props) {
@@ -36,4 +35,4 @@ class NavForm extends React.Component {
     }
 }
 
-export default withRouter(NavForm)
+export default NavForm
