@@ -127,6 +127,13 @@ function updateProperties(result) {
     } else {
         result.author && (result.authorTitle = result.author.title);
         result.imageUrl = `/static/${result._doc}/default.${result._system.attachments.default.ext}`
+        if (result.recommendations) {
+            result.recommendations.map((book) => {
+                book._doc = book.id;
+                book.authorTitle = "";
+                book.imageUrl = `/static/${book._doc || book.id}/default.jpg`;
+            });
+        }
     }
 
     return result;
