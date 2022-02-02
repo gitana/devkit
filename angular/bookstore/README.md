@@ -7,7 +7,7 @@ To run, in the angular/sample directory:
 1. Add your `gitana.json` file. You can get it by: Creating a sample project > Manage Project > API Keys
 2. Run `npm install`
 3. Run `npm install -g @angular/cli` to install Angular
-4. Run `ng build --prod` to build the Angular app
+4. Run `npm build` to build the Angular app
 5. Run `node app` to start the app server.
 6. Navigate to http://localhost:2999
 

@@ -78,7 +78,7 @@ async function init() {
         };
 
         let result = await cloudcmsSession.findNodes(repository, branch, query, { metadata: true, full: true, limit: 100 });
-        return res.status(200).json(updateProperties(result));
+        return res.status(200).json(updateProperties(result).rows);
     });
 
     app.get("/api/tags", async (req, res) => {
@@ -115,10 +115,24 @@ function updateProperties(result) {
         result.rows.map((row) => { 
             row.author && (row.authorTitle = row.author.title);
             row.imageUrl = `/static/${row._doc}/default.${row._system.attachments.default.ext}` 
+            if (row.recommendations) {
+                row.recommendations.map((book) => {
+                    book._doc = book.id;
+                    book.authorTitle = "";
+                    book.imageUrl = `/static/${book._doc || book.id}/default.jpg`;
         });
-    } else {
+            }
+        });
+    } else if (result._doc) {
         result.author && (result.authorTitle = result.author.title);
         result.imageUrl = `/static/${result._doc}/default.${result._system.attachments.default.ext}` 
+        if (result.recommendations) {
+            result.recommendations.map((book) => {
+                book._doc = book.id;
+                book.authorTitle = "";
+                book.imageUrl = `/static/${book._doc || book.id}/default.jpg`;
+            });
+        }
     }
 
     return result;
