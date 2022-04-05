@@ -1,0 +1,35 @@
+{
+    "evaluator": "or",
+    "condition": [
+        {
+            "evaluator": "uri-match",
+            "condition": "/projects/{projectId}/content/{qname}"
+        },
+        {
+            "evaluator": "uri-match",
+            "condition": "/projects/{projectId}/content"
+        }
+    ],
+    "config": {
+        "regions": {
+            "center": {
+                "type": "custom-content-instances",
+                "config": {
+                    "replace": true,
+                    "chrome": false,
+                    "buttons": [],
+                    "columns": [
+                        {
+                            "title": "Content",
+                            "key": "titleDescription"
+                        }
+                    ],
+                    "icon": true,
+                    "checkbox": true,
+                    "loader": "gitana",
+                    "actions": true
+                }
+            }
+        }
+    }
+}
