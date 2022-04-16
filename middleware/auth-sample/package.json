@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "cloudcms-server": "*",
+    "cloudcms-server": "0.9.254",
     "jsonwebtoken": "^8.5.1"
   }
 }
