@@ -6,8 +6,8 @@
     "start": "node ./app.js"
   },
   "dependencies": {
-    "express": "~4.9.0",
-    "jade": "~1.6.0",
-    "gitana": "*"
+    "express": "^4.17.3",
+    "gitana": "*",
+    "jade": "^0.31.2"
   }
 }
