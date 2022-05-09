@@ -1,4 +1,6 @@
 import React, { Fragment } from "react";
+import Link from "next/link";
+
 
 const styleH4 = {
     display: "inline-block"
@@ -16,7 +18,10 @@ const BookTags = ({ book }) => (
                 book.tags.map((tag) => (
                     <h4 style={styleH4} key={tag}>
                         <span className="label label-default">
-                            <a style={styleA}>{tag}</a>
+                            <Link href={`/tag/${tag}`} style={styleA}>
+                                <a style={styleA}>{tag}</a>
+                            </Link>
+                            {/* <a style={styleA}>{tag}</a> */}
                         </span>
                     </h4>
                 ))
