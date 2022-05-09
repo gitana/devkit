@@ -38,7 +38,7 @@
                                 <template v-if="book.tags">
                                 <h3>Tags</h3>
                                     <template v-for="tag in book.tags">
-                                      <div class="badge badge-info">
+                                      <div class="badge badge-info" :key="tag">
                                         <a :href="'/tag/' + tag" style="color:white">{{tag}}</a>
                                       </div>
                                     </template>
